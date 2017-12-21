@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { roomRef } from '../firebase';
 import { browserHistory } from 'react-router';
 
@@ -24,11 +25,12 @@ class AddRoom extends Component {
     render() {
         // console.log('this.props', this.props.user)
         return (
-            <div className="form-inline">
+            <div className="form-inline" align="center" style={{ marginTop: '5em' }}>
+                <h2>Add New Channel</h2>
                 <div className="form-group">
                     <input
                         type="text"
-                        placeholder="add a Room"
+                        placeholder="add a Channel"
                         className="form-control"
                         style={{ marginRight: '5px' }}
                         onChange={event => this.setState({ name: event.target.value })}
@@ -36,13 +38,23 @@ class AddRoom extends Component {
                             if (event.key === 'Enter') {
                                 this.addRoom()
                             }
-                        }} />
+                        }} /><br />
                     <button
                         className="btn btn-success"
                         type="button"
-                        onClick={() => this.addRoom()}>
+                        onClick={() => this.addRoom()}
+                        style={{ margin: '1em' }}>
                         Submit
                     </button>
+
+                    <Link to={'/app'}>
+                        <button
+                            className="btn btn-danger"
+                            type="button"
+                            style={{ margin: '0.2em' }}>
+                            Back To Channel
+                    </button>
+                    </Link>
                 </div>
             </div>
         )

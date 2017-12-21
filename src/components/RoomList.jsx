@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { roomRef } from '../firebase';
 import { setRooms } from '../actions';
 import { Link } from 'react-router';
+
+import '../App.css'
 // import RoomItem from './RoomItem';
 
 
@@ -27,20 +29,28 @@ class RoomList extends Component {
         })
     }
 
-    render(){
+    render() {
         // console.log('this.props', this.props.rooms)
-        const roomList =  this.props.rooms
-        return(
+        const roomList = this.props.rooms
+        return (
             <div>
-               {
-                   roomList.map((room, k) =>{
-                       return(
-                           <div key={k}>
-                               <Link to={`room/${room.serverKey}`}>{room.name}</Link>
-                           </div>
-                       )
-                   })
-               }
+                {
+                    roomList.map((room, k) => {
+                        return (
+                            <div key={k} style={{ marginTop: '2em' }}>
+                                <Link to={`room/${room.serverKey}`}>
+                                    <div className="card">
+                                        <div className="header">
+                                            <h2>{room.name}</h2>
+
+                                        </div>
+                                        <span>Room Id: {room.serverKey}</span>
+                                    </div>
+                                </Link>
+                            </div>
+                        )
+                    })
+                }
             </div>
         )
     }

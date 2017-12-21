@@ -8,8 +8,8 @@ class ToAddRoom extends Component {
         return (
             <Link to={'/addroom'}>
                 <button
-                    className="btn btn-md btn-primary">
-                    Add Room
+                    className="btn btn-md btn-success">
+                    Add New Channel
             </button>
             </Link>
         )

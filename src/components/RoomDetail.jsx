@@ -12,6 +12,7 @@ class RoomDetail extends Component {
         this.state = {
             message: ''
         }
+
     }
 
     addChat() {
@@ -38,49 +39,64 @@ class RoomDetail extends Component {
         })
     }
 
-
-
     render() {
         // console.log('this.props.user', this.props.user);
         // console.log('this.props.chats', this.props.chats);
         const chats = this.props.chats;
         return (
             <div>
-                {
-                    chats.map((chat, k) =>{
-                        return(
-                            <div key={k}>
-                                <li>{chat.message}</li> <strong>By</strong> <span>{chat.email}</span>
-                            </div>
-                        )
-                    })
-                }
-                <div className="form-inline">
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            placeholder="Messages"
-                            className="form-control"
-                            style={{ marginRight: '5px' }}
-                            onChange={event => this.setState({ message: event.target.value })}
-                            onKeyPress={event => {
-                                if (event.key === 'Enter') {
-                                    this.addChat()
-                                }
-                            }} />
-                        <button
-                            className="btn btn-success"
-                            type="button"
-                            onClick={() => this.addChat()}>
-                            Submit
-                    </button>
-                    <Link to={'/app'}>
-                    <button
-                            className="btn btn-danger"
-                            type="button">
-                            Back To Channel
-                    </button>
-                    </Link>
+                <div style={{
+                    height: '80%',
+                    overflowX: 'hidden',
+                    overflowY: 'scroll',
+                    position: 'fixed',
+                    width: '100%',
+                    backgroundColor: 'black'
+                }}>
+                    {
+                        chats.map((chat, k) => {
+                            return (
+                                <div key={k}>
+                                    <div className="container" style={{marginLeft: '3em', marginRight: '3em'}}>
+                                        <p>{chat.message}</p>
+                                        <span className="time-left"><strong>By</strong> {chat.email}</span>
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+                <div style={{ position: 'absolute', bottom: 30, margin: '2em' }}>
+                    <div className="form-inline" >
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                placeholder="Messages"
+                                className="form-control"
+                                size="160"
+                                onChange={event => this.setState({ message: event.target.value })}
+                                onKeyPress={event => {
+                                    if (event.key === 'Enter') {
+                                        this.addChat()
+                                    }
+                                }} />
+                            <button
+                                className="btn btn-success"
+                                type="button"
+                                style={{ marginLeft: '1em' }}
+                                onClick={() => this.addChat()}>
+                                Submit
+                            </button>
+                            <Link to={'/app'}>
+                                <button
+                                    className="btn btn-danger"
+                                    style={{ marginLeft: '1em' }}
+                                    type="button">
+                                    Back To Channel
+                            </button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
