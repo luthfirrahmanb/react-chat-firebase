@@ -62,7 +62,7 @@ class Login extends Component {
                     </button>
                 </div>
                 <div>{this.state.error.message}</div>
-                <div><Link to={'/signup'}>Already register? Let's Sign In</Link></div>
+                <div><Link to={'/signup'}>Don't have any Account? Let's Sign Up!</Link></div>
             </div>
         )
     }
