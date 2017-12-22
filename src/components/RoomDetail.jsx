@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { roomRef } from '../firebase';
 import { setChat } from '../actions';
+import * as moment from 'moment';
 
 class RoomDetail extends Component {
 
@@ -10,17 +11,18 @@ class RoomDetail extends Component {
         super(props);
 
         this.state = {
-            message: ''
+            message: '',
+            time: moment(new Date()).format('hh:mm a (ddd, MMM YYYY)')
         }
 
     }
 
     addChat() {
-        const { message } = this.state;
+        const { message, time } = this.state;
         const { email } = this.props.user;
 
         let room = roomRef.child(`/${this.props.params.id}/chat`);
-        let chat = room.push({ email, message });
+        let chat = room.push({ email, message, time });
     }
 
     componentDidMount() {
@@ -29,9 +31,9 @@ class RoomDetail extends Component {
         roomRef.child(`/${this.props.params.id}/chat`).on('value', snap => {
             let chats = [];
             snap.forEach(chat => {
-                const { email, message } = chat.val()
+                const { email, message, time } = chat.val()
                 const serverKey = chat.key;
-                chats.push({ email, message, serverKey });
+                chats.push({ email, message,time, serverKey });
                 // console.log('chats', chat.val());
             })
             // console.log('chats', chats);
@@ -50,6 +52,7 @@ class RoomDetail extends Component {
         // console.log('this.props.user', this.props.user);
         // console.log('this.props.chats', this.props.chats);
         const chats = this.props.chats;
+        console.log(day);
         return (
             <div>
                 <div style={{
@@ -67,6 +70,7 @@ class RoomDetail extends Component {
                                     <div className="container" style={{ marginLeft: '3em', marginRight: '3em' }}>
                                         <p>{chat.message}</p>
                                         <span className="time-left"><strong>By</strong> {chat.email}</span>
+                                        <span className="time-right">{chat.time}</span>
                                     </div>
 
                                 </div>
