@@ -52,7 +52,6 @@ class RoomDetail extends Component {
         // console.log('this.props.user', this.props.user);
         // console.log('this.props.chats', this.props.chats);
         const chats = this.props.chats;
-        console.log(day);
         return (
             <div>
                 <div style={{
