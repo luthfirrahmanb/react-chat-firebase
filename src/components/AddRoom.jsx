@@ -16,7 +16,6 @@ class AddRoom extends Component {
 
     addRoom() {
         const { name } = this.state;
-        const { email } = this.props.user;
         roomRef.push({ name });
         browserHistory.push('/app');
     }

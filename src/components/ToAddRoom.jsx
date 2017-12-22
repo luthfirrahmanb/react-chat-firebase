@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import AddRooms from './AddRoom';
 
 class ToAddRoom extends Component {
 
