@@ -84,11 +84,7 @@ class RoomDetail extends Component {
                                     className="form-control"
                                     size="160"
                                     onChange={event => this.setState({ message: event.target.value })}
-                                    onKeyPress={event => {
-                                        if (event.key === 'Enter') {
-                                            this.addChat()
-                                        }
-                                    }} />
+                                     />
                                 <button
                                     className="btn btn-success"
                                     type="submit"
