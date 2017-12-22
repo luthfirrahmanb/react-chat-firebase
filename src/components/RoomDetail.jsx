@@ -37,6 +37,13 @@ class RoomDetail extends Component {
             // console.log('chats', chats);
             dispatch(setChat(chats));
         })
+
+    }
+
+    handleSubmit(e){
+        this.addChat()
+        e.preventDefault();
+        e.target.reset();
     }
 
     render() {
@@ -57,7 +64,7 @@ class RoomDetail extends Component {
                         chats.map((chat, k) => {
                             return (
                                 <div key={k}>
-                                    <div className="container" style={{marginLeft: '3em', marginRight: '3em'}}>
+                                    <div className="container" style={{ marginLeft: '3em', marginRight: '3em' }}>
                                         <p>{chat.message}</p>
                                         <span className="time-left"><strong>By</strong> {chat.email}</span>
                                     </div>
@@ -68,36 +75,37 @@ class RoomDetail extends Component {
                     }
                 </div>
                 <div style={{ position: 'absolute', bottom: 30, margin: '2em' }}>
-                    <div className="form-inline" >
-                        <div className="form-group">
-                            <input
-                                type="text"
-                                placeholder="Messages"
-                                className="form-control"
-                                size="160"
-                                onChange={event => this.setState({ message: event.target.value })}
-                                onKeyPress={event => {
-                                    if (event.key === 'Enter') {
-                                        this.addChat()
-                                    }
-                                }} />
-                            <button
-                                className="btn btn-success"
-                                type="button"
-                                style={{ marginLeft: '1em' }}
-                                onClick={() => this.addChat()}>
-                                Submit
-                            </button>
-                            <Link to={'/app'}>
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                        <div className="form-inline" >
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    placeholder="Messages"
+                                    className="form-control"
+                                    size="160"
+                                    onChange={event => this.setState({ message: event.target.value })}
+                                    onKeyPress={event => {
+                                        if (event.key === 'Enter') {
+                                            this.addChat()
+                                        }
+                                    }} />
                                 <button
-                                    className="btn btn-danger"
-                                    style={{ marginLeft: '1em' }}
-                                    type="button">
-                                    Back To Channel
+                                    className="btn btn-success"
+                                    type="submit"
+                                    style={{ marginLeft: '1em' }}>
+                                    Send
                             </button>
-                            </Link>
+                                <Link to={'/app'}>
+                                    <button
+                                        className="btn btn-danger"
+                                        style={{ marginLeft: '1em' }}
+                                        type="button">
+                                        Back To Channel
+                            </button>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         )
