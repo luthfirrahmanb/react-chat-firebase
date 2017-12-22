@@ -16,7 +16,7 @@ class RoomList extends Component {
 
 
     componentDidMount() {
-        roomRef.on('value', snap => {
+        roomRef.orderByChild('name').on('value', snap => {
             let rooms = [];
             snap.forEach(room => {
                 const { name } = room.val()
