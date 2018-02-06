@@ -33,16 +33,15 @@ class RoomDetail extends Component {
             snap.forEach(chat => {
                 const { email, message, time } = chat.val()
                 const serverKey = chat.key;
-                chats.push({ email, message,time, serverKey });
+                chats.push({ email, message, time, serverKey });
                 // console.log('chats', chat.val());
             })
             // console.log('chats', chats);
             dispatch(setChat(chats));
         })
-
     }
 
-    handleSubmit(e){
+    handleSubmit(e) {
         this.addChat()
         e.preventDefault();
         e.target.reset();
@@ -52,6 +51,7 @@ class RoomDetail extends Component {
         // console.log('this.props.user', this.props.user);
         // console.log('this.props.chats', this.props.chats);
         const chats = this.props.chats;
+
         return (
             <div>
                 <div style={{
@@ -87,7 +87,7 @@ class RoomDetail extends Component {
                                     className="form-control"
                                     size="160"
                                     onChange={event => this.setState({ message: event.target.value })}
-                                     />
+                                />
                                 <button
                                     className="btn btn-success"
                                     type="submit"
